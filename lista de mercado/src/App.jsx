@@ -6,14 +6,39 @@ import {TodoSearch} from './TodoSearch' //pascal case
 import {CreateTodoButton} from './CreateTodoButton'
 import { TodoItem } from './TodoItem'
 
-const defaultTodos  = [
+/* const defaultTodos  = [
   {text: 'cortar cebolla', completed: false},
   {text: 'cortar con la llorona', completed: true},
   {text: 'Tomar curso de intro a React', completed: false},
-]
+] */
+function useLocalStorage(itemName, initialValue) {
+  
+  const localStorageItem = localStorage.getItem(itemName); //nombre de local storage
+  let parseItem; //variable donde se guardan los datos ingresados
+  
+  if (!localStorageItem) { //condicional cuando es usuario nuevo y no ha creado tareas
+    localStorage.setItem(itemName, JSON.stringify(initialValue))
+    parseItem = initialValue
+  } else { //pero si ya tiene elementos mostrarlos en la vairable
+    parseItem = JSON.parse(localStorageItem) 
+  }
+  const [item, setItem] = useState(parseItem);
+
+  const saveItem = (newItem) => { //para guardar en mi local y no se borre al recargar
+    const stringifiedItem = JSON.stringify(newItem);
+    localStorage.setItem(itemName, stringifiedItem);
+    setItem(newItem)
+  }
+  return [
+    item,
+    saveItem
+  ]
+}
+
 
 export function App() {
-  const [ todos, setTodos] = useState(defaultTodos )
+
+  const [ todos, saveTodos] = useLocalStorage('TODOS_V1', []) //le doy un nombre y un estado inicial
   const [searchValue, setSearchValue] = useState('')
 
   const completedTodos = todos.filter(todo => todo.completed).length;
@@ -36,14 +61,14 @@ export function App() {
     const todoIndex = todos.findIndex(todo => todo.text === text);
     const newTodos = [...todos];
     newTodos[todoIndex].completed = true;
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
   const deleteTodo = (text) => {
     const todoIndex = todos.findIndex(todo => todo.text === text);
     const newTodos = [...todos];
     newTodos.splice(todoIndex, 1);
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
   
   return (

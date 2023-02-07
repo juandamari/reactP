@@ -3,9 +3,9 @@ import React from "react";
 export function TodoList(props){
     return(
         <section>
-            <lu>
+            <li className="list-none">
                 {props.children}
-            </lu>        
+            </li>        
         </section>
     )
 }
