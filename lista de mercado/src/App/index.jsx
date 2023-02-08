@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import './App.css'
-import {TodoCounter } from './TodoCounter'
-import {TodoList} from './TodoList'
-import {TodoSearch} from './TodoSearch' //pascal case
-import {CreateTodoButton} from './CreateTodoButton'
-import { TodoItem } from './TodoItem'
+import {TodoCounter } from '../TodoCounter'
+import {TodoList} from '../TodoList'
+import {TodoSearch} from '../TodoSearch' //pascal case
+import {CreateTodoButton} from '../CreateTodoButton'
+import { TodoItem } from '../TodoItem'
 
 /* const defaultTodos  = [
   {text: 'cortar cebolla', completed: false},
