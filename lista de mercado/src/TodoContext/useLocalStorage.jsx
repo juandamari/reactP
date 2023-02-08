@@ -1,3 +1,5 @@
+import { useState,useEffect } from "react";
+
 
 export function useLocalStorage(itemName, initialValue) {
   const [error, setError] = useState(false);
@@ -22,7 +24,7 @@ export function useLocalStorage(itemName, initialValue) {
       } catch(error) {
         setError(error);
       }
-    }, 1000);
+    }, 2000);
   });
   
   const saveItem = (newItem) => {

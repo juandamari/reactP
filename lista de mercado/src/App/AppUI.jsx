@@ -5,8 +5,9 @@ import {TodoList} from '../TodoList'
 import {TodoSearch} from '../TodoSearch' //pascal case
 import {CreateTodoButton} from '../CreateTodoButton'
 import { TodoItem } from '../TodoItem'
+import { LoadingPage } from "../NotFound/NotFound";
 
-export function AppIU() {
+export function AppUI() {
     return (
       <section className='flex flex-col h-screen justify-center items-center bg-blue-700'>
         <div className='space-y-4 w-96 h-auto rounded-lg shadow-xl text-center border-solid border-2 border-sky-500 shadow-blue-500/50 bg-blue-500 '>
@@ -23,8 +24,8 @@ export function AppIU() {
             }) => (
               <TodoList>
                 {error && <p>Desespérate, hubo un error...</p>}
-                {loading && <p>Estamos cargando, no desesperes</p>}
-                {(!loading && !searchedTodos.length) && <p>¡Crea tu primeTODO!</p>}
+                {loading && <LoadingPage/>}
+                {(!loading && !searchedTodos.length) && <p>¡Crea tu primer TODO!</p>}
 
                 {searchedTodos.map(todo => (
                   <TodoItem
