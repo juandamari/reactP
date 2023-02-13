@@ -6,6 +6,7 @@ import {TodoSearch} from '../TodoSearch' //pascal case
 import {CreateTodoButton} from '../CreateTodoButton'
 import { TodoItem } from '../TodoItem'
 import { LoadingPage } from "../NotFound/NotFound";
+import { Modal} from '../Modal'
 
 export function AppUI() {
   const {
@@ -14,6 +15,8 @@ export function AppUI() {
     searchedTodos,
     completeTodo,
     deleteTodo,
+    openModal,
+    setOpenModal,
   } = useContext(TodoContext); //aca llama directamente los parametros en vez de poner 'value' a cada propiedad que lo necesite, por ser función
               
     return (
@@ -38,7 +41,14 @@ export function AppUI() {
             ))}
           </TodoList>
 
-          <CreateTodoButton></CreateTodoButton>
+          {!!openModal && (
+            <Modal>
+              <p>{searchedTodos[1]?.text}</p>
+            </Modal>
+          )}
+          
+          <CreateTodoButton setOpenModal={setOpenModal}/>
+
         </div>
       </section>
     )
