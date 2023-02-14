@@ -5,6 +5,7 @@ import {TodoList} from '../TodoList'
 import {TodoSearch} from '../TodoSearch' //pascal case
 import {CreateTodoButton} from '../CreateTodoButton'
 import { TodoItem } from '../TodoItem'
+import { TodoForm } from '../todoForm'
 import { LoadingPage } from "../NotFound/NotFound";
 import { Modal} from '../Modal'
 
@@ -43,7 +44,7 @@ export function AppUI() {
 
           {!!openModal && (
             <Modal>
-              <p>{searchedTodos[1]?.text}</p>
+              <TodoForm></TodoForm>
             </Modal>
           )}
           

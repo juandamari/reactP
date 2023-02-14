@@ -2,13 +2,9 @@
 module.exports = {
   content: [    
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",],
+    "./src/**/*.{js,ts,jsx,tsx}",], //le digo de donde tiene que revisar donde poner los estilos
   theme: {
-    extend: {
-      inset: {
-        '-10px': '-10px',
-      }
-    },
+    extend: {},
   },
   plugins: [],
 }
