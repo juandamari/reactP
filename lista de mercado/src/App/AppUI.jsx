@@ -24,12 +24,12 @@ export function AppUI() {
               
     return (
       <section className='flex flex-col justify-center items-center bg-blue-700 h-screen'>
-        <div className='space-y-4 w-auto h-auto rounded-lg shadow-xl text-center border-solid border-2 border-sky-500 shadow-blue-500/50 bg-blue-500 '>
+        <div className='space-y-4 w-[320px] h-auto p-2 rounded-lg shadow-xl text-center border-solid border-2 border-sky-500 shadow-blue-500/50 bg-blue-500 '>
           <TodoCounter/>
           <TodoSearch/>
 
           <TodoList>
-            {error && <ErrorPages/>}
+            {error && <ErrorPages error={error}/>}
             {loading && <LoadingPage />}
             {(!loading && !searchedTodos.length) && <AddNewTodo/>}
 

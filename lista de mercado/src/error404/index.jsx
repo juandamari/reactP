@@ -2,7 +2,7 @@ import React from "react";
 import './pageserror.css'
 
 
-export function ErrorPages(){
+export function ErrorPages({error}){
     return(
         <body>
             <section className="notFound">
