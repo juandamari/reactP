@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import { TodoContext } from '../TodoContext'
 import { TodoCounter } from '../TodoCounter';
 import {TodoList} from '../TodoList'
-import {TodoSearch} from '../TodoSearch' //pascal case
+import { ErrorPages } from '../error404'
+import {TodoSearch} from '../TodoSearch' //pascal case en la funcion para hacer el import
 import {CreateTodoButton} from '../CreateTodoButton'
 import { TodoItem } from '../TodoItem'
 import { TodoForm } from '../todoForm'
-import { LoadingPage } from "../NotFound/NotFound";
+import { LoadingPage } from "../Pagescharging";
 import { Modal} from '../Modal'
+import { AddNewTodo } from "../addNew";
 
 export function AppUI() {
   const {
@@ -21,25 +23,25 @@ export function AppUI() {
   } = useContext(TodoContext); //aca llama directamente los parametros en vez de poner 'value' a cada propiedad que lo necesite, por ser función
               
     return (
-      <section className='flex flex-col h-screen justify-center items-center bg-blue-700'>
-        <div className='space-y-4 w-96 h-auto rounded-lg shadow-xl text-center border-solid border-2 border-sky-500 shadow-blue-500/50 bg-blue-500 '>
+      <section className='flex flex-col justify-center items-center bg-blue-700 h-screen'>
+        <div className='space-y-4 w-auto h-auto rounded-lg shadow-xl text-center border-solid border-2 border-sky-500 shadow-blue-500/50 bg-blue-500 '>
           <TodoCounter/>
           <TodoSearch/>
 
           <TodoList>
-            {error && <p>Desespérate, hubo un error...</p>}
+            {error && <ErrorPages/>}
             {loading && <LoadingPage />}
-            {(!loading && !searchedTodos.length) && <p>¡Crea tu primer TODO!</p>}
+            {(!loading && !searchedTodos.length) && <AddNewTodo/>}
 
-            {searchedTodos.map(todo => (
+            {searchedTodos.map((todo) => (
               <TodoItem
-                text={todo.text}
-                key={todo.text}
-                completed={todo.completed}
-                onComplete={() => completeTodo(todo.text)}
-                onDelete={() => deleteTodo(todo.text)}
+              key={todo.text}
+              text={todo.text}
+              completed={todo.completed}
+              onComplete={() => completeTodo(todo.text)}
+              onDelete={() => deleteTodo(todo.text)}
               />
-            ))}
+              ))}
           </TodoList>
 
           {!!openModal && (
