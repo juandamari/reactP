@@ -14,7 +14,7 @@ function TodoProvider(props) {
   const [searchValue, setSearchValue] = useState('');
   const [ openModal, setOpenModal] = useState(false);
 
-  const completedTodos = todos.filter(todo => todo.completed.id).length;
+  const completedTodos = todos.filter(todo => todo.completed).length;
   const totalTodos = todos.length;
 
   let searchedTodos = [];
