@@ -1,10 +1,9 @@
 import React from 'react';
-import { useState, createContext } from 'react';
+import { useState } from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
-const TodoContext = createContext();
 
-function TodoProvider(props) {
+export function todoUse (props) {
   const {
     item: todos,
     saveItem: saveTodos,
@@ -38,7 +37,7 @@ function TodoProvider(props) {
     saveTodos(newTodos);
   };
 
-  const completeTodo = (text) => {
+  const completeTodo = (text) => { // intentar cambiar text por id para que no genere bug
     const todoIndex = todos.findIndex(todo => todo.text === text);
     const newTodos = [...todos];
     newTodos[todoIndex].completed = true;
@@ -53,7 +52,7 @@ function TodoProvider(props) {
   };
   
   return (
-    <TodoContext.Provider value={{
+    {
       loading,
       error,
       totalTodos,
@@ -66,10 +65,6 @@ function TodoProvider(props) {
       openModal,
       setOpenModal,
       addTodo,
-    }}>
-      {props.children}
-    </TodoContext.Provider>
+    }
   );
 }
-
-export { TodoContext, TodoProvider };

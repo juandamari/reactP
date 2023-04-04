@@ -1,8 +1,6 @@
-import React, { useContext, useState } from "react";
-import { TodoContext } from "../TodoContext";
+import React from "react";
 
-export function TodoSearch() {
-    const {searchValue, setSearchValue } = useContext (TodoContext); //haciendo el llamado de las propiedades que estan en local
+export function TodoSearch({searchValue, setSearchValue }) {
     const onSearchValueChange = (event) => { //le doy el valor de set, una vez se realice el evento
         setSearchValue(event.target.value);
     };

@@ -1,9 +1,6 @@
-import React, { useContext } from "react"
-import { TodoContext } from "../TodoContext"
+import React from "react"
 
-
-export function TodoCounter () { //en parametros usaba props, ahora con 'usecontext' los reutilizo
-    const {totalTodos, completedTodos} = useContext(TodoContext);
+export function TodoCounter ({totalTodos, completedTodos}) { //se los doy como parametros para usarlos como hooks
     return(
         <h2 className='text-2xl font-bold text-fuchsia-700'>Has completado {completedTodos} de {totalTodos} TODOs</h2>
     )
