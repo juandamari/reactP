@@ -31,21 +31,22 @@ export function todoUse (props) {
   const addTodo = (text) => {
     const newTodos = [...todos];
     newTodos.push({
+      id: Date.now(),
       completed: false,
       text,
     })
     saveTodos(newTodos);
   };
 
-  const completeTodo = (text) => { // intentar cambiar text por id para que no genere bug
-    const todoIndex = todos.findIndex(todo => todo.text === text);
+  const completeTodo = (id) => { // intentar cambiar text por id para que no genere bug
+    const todoIndex = todos.findIndex(todo => todo.id === id);
     const newTodos = [...todos];
     newTodos[todoIndex].completed = true;
     saveTodos(newTodos);
   };
 
-  const deleteTodo = (text) => {
-    const todoIndex = todos.findIndex(todo => todo.text === text);
+  const deleteTodo = (id) => {
+    const todoIndex = todos.findIndex(todo => todo.id === id);
     const newTodos = [...todos];
     newTodos.splice(todoIndex, 1);
     saveTodos(newTodos);

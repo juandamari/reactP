@@ -43,36 +43,25 @@ const   {
         <TodoList
         error={error}
         loading={loading}
-        AddNewTodo={AddNewTodo}
+        searchedTodos={searchedTodos}
+        searchText={searchValue}
+        totalTodos={totalTodos}
         onError={()=> <ErrorPages />}
         onLoading={()=> <LoadingPage />}
         onEmptyTodos={()=> <AddNewTodo />}
+        onEmptyResults={(searchText)=> <p>No hay resultado para {searchText}</p>}
         render={todo => (
-          <TodoItem
-          key={todo.text} //agregar id= id para intentar quitar el bug
+          <TodoItem   //esto es render prop
+          key={todo.id}
+          id={todo.id}
           text={todo.text}
           completed={todo.completed}
-          onComplete={() => completeTodo(todo.text)}
-          onDelete={() => deleteTodo(todo.text)}
+          onComplete={() => completeTodo(todo.id)}
+          onDelete={() => deleteTodo(todo.id)}
           />
           )}
         />
 
-        {/* <TodoList>
-          {error && <ErrorPages error={error}/>}
-          {loading && <LoadingPage />}
-          {(!loading && !searchedTodos.length) && <AddNewTodo/>}
-
-          {searchedTodos.map((todo) => (
-            <TodoItem
-            key={todo.text} //agregar id= id para intentar quitar el bug
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-            />
-            ))}
-        </TodoList> */}
 
         {!!openModal && (
           <Modal>

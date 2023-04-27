@@ -2,18 +2,22 @@ import React from "react";
 
 export function TodoList(props){
     return(
-        <section className="TodoList-container">
+        <section>
             {props.error && props.onError()}
             {props.loading && props.onLoading()}
 
-            {(!props.loading && !props.searchedTodos?.length) && props.onEmptyTodos()}
+            {(!props.loading && !props.totalTodos) && props.onEmptyTodos()}
 
-            {props.searchedTodos?.map(props.render)}
+            {(!!props.totalTodos && !props.searchedTodos.length) && props.onEmptyResults(props.searchText)}
+
+            {props.searchedTodos?.map(props.render || props.children)} 
+
 
             <ul className="list-none">
-                {props.childre}
+                {props.children}
             </ul>
 
         </section>
     )
 }
+
